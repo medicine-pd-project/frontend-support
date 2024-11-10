@@ -1,7 +1,7 @@
 import type { IDateModel } from "./dateModel";
 
 export interface IUserBelong {
-  userId: Number;
+  userId: number;
   user: any;
 }
 

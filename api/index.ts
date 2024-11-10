@@ -1,8 +1,8 @@
 import todos from "./modules/todos";
 import users from "./modules/users";
-import categories from "./modules/categories";
+import chats from "./modules/chats";
 
-type apiNames = "categories" | "todos" | "users";
+type apiNames = "todos" | "users" | "chats";
 
 interface apiMethods {
   get?: ({ id, params }: { id: number | string; params?: any }) => Promise<any>;
@@ -18,6 +18,7 @@ interface apiMethods {
     params?: any;
   }) => Promise<any>;
   delete?: ({ id, params }: { id: number; params?: any }) => Promise<any>;
+  _?: any;
 }
 
 type typeApi = Record<apiNames, apiMethods>;
@@ -25,9 +26,9 @@ type typeApi = Record<apiNames, apiMethods>;
 // Record<apiMethods, (...args: Array<any>) => Promise<any>>
 // [_: apiMethods]: (...args: Array<any>) => Promise<any> | never;
 const api: typeApi = {
-  categories,
   todos,
   users,
+  chats,
 };
 
 export { api as default, type typeApi, type apiMethods };

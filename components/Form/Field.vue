@@ -6,7 +6,7 @@
     </template>
     <input
       v-bind="$attrs"
-      class="field__input input w-full"
+      class="field__input input rounded-xl p-4 w-full"
       @input="handleInput"
       :type="type ?? 'text'"
       :value="modelValue"
@@ -45,6 +45,7 @@ const handleInput = (e: Event) => {
 <style lang="scss" scoped>
 .field {
   &__input {
+    background-color: var(--main-background);
   }
 }
 </style>

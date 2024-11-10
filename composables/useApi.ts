@@ -45,15 +45,15 @@ export default async <T>({
   cacheDataLimit = 20,
 }: iUseApi) => {
   const id = uniqueId();
-  const data = useState<T[] | null>(`data-${id}`, () => null);
+  const data = useState<T | null>(`data-${id}`, () => null);
   const isLoading = useState<boolean | null>(`loading-${id}`, () => null);
   const error = useState(`error-${id}`, () => false);
   const meta = useState(`meta-${id}`, () => []);
   const cache = useState<
     {
       params: string;
-      data: T[];
-      meta: any;
+      data: T;
+      // meta: any;
     }[]
   >(`cache-${id}`, () => []);
 
@@ -94,10 +94,13 @@ export default async <T>({
 
       await api?.[apiName]?.[apiMethod]?.(preParams, headers)?.then(
         async (res: any) => {
-          const { data: dataLocal, ...other } = res;
+          // const { data: dataLocal, ...other } = res;
+          const dataLocal = res;
+          // const { data: dataLocal, ...other } = res;
 
-          data.value = dataLocal ?? res;
-          meta.value = other;
+          // data.value = dataLocal ?? res;
+          data.value = res;
+          // meta.value = other;
 
           if (withCache && other) {
             cache.value = [
@@ -105,7 +108,7 @@ export default async <T>({
               {
                 params: JSON.stringify(preParams),
                 data: dataLocal,
-                meta: other,
+                // meta: other,
               },
             ];
           }
