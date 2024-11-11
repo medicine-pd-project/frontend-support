@@ -544,7 +544,7 @@ onUnmounted(() => {
 });
 
 definePageMeta({
-  // middleware: ["auth"],
+  middleware: ["auth"],
 });
 </script>
 
