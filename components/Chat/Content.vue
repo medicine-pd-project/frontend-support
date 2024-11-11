@@ -109,9 +109,11 @@ onMounted(() => {
 
 watch(
   () => props.chat,
-  (cur) => {
+  (cur, pre) => {
     // messages.value = cur?.messages;
-    scrollToBottom();
+    if (cur?.messages?.length !== pre?.messages?.length) {
+      scrollToBottom();
+    }
   }
 );
 

@@ -5,9 +5,14 @@
         <MessageItem :message="message" />
         <div
           class="messages__time"
+          :style="{ zIndex: messages?.length - index }"
           v-if="
-            moment(message?.createdAt).format('YYYY-MM-DD') !==
-            moment(messages?.[index + 1]?.createdAt).format('YYYY-MM-DD')
+            moment(convertToMilliseconds(message?.createdAt)).format(
+              'YYYY-MM-DD'
+            ) !==
+            moment(
+              convertToMilliseconds(messages?.[index + 1]?.createdAt)
+            ).format('YYYY-MM-DD')
           "
         >
           {{
@@ -66,8 +71,11 @@ const props = defineProps<{
   }
 
   &__time {
+    background-color: var(--color-white);
+    border-radius: 4px;
     font-size: 12px;
     line-height: 1;
+    padding: 4px;
     position: sticky;
     top: 24px;
     margin: 0 auto;
