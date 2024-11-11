@@ -1,4 +1,4 @@
-import type { typeApi, apiMethods } from "~/api";
+import type { apiNames } from "~/api";
 import api from "~/api";
 import type { initialFiltersItem } from "./useFilter";
 import uniqueId from "lodash/uniqueId";
@@ -9,8 +9,8 @@ import uniqueId from "lodash/uniqueId";
 
 interface iUseApi {
   // name: `${keyof typeof users}`;
-  // ${keyof typeApi}.
-  apiName: keyof typeApi;
+  // ${keyof apiNames}.
+  apiName: apiNames;
   apiMethod: "get" | "getAll";
   params?: object;
   filters?: globalThis.Ref<initialFiltersItem>;
@@ -84,7 +84,7 @@ export default async <T>({
 
         if (cacheValue) {
           data.value = cacheValue.data;
-          meta.value = cacheValue.meta;
+          // meta.value = cacheValue.meta;
           return;
         }
       }
@@ -102,7 +102,7 @@ export default async <T>({
           data.value = res;
           // meta.value = other;
 
-          if (withCache && other) {
+          if (withCache) {
             cache.value = [
               ...cache.value,
               {

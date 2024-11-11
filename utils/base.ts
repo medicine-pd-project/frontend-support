@@ -1,5 +1,7 @@
 import { useToast } from "vue-toastification";
 import isObject from "lodash/isObject";
+import last from "lodash/last";
+
 const toast = useToast();
 
 export const warningPopup = (message: string = "Упс, что-то пошло не так!") => {
@@ -142,3 +144,5 @@ export const convertValuesToString = (obj: object) => {
 //       : cases[number % 10 < 5 ? number % 10 : 5]
 //   ];
 // }
+
+export const getTgNick = (nickname: string) => "@" + last(nickname?.split(" "));

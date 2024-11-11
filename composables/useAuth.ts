@@ -1,17 +1,21 @@
 import type { RouteLocationRaw } from "vue-router";
+import api from "~/api";
 // import { NavigateToOptions } from "vue-router";
 import auth from "~/api/auth";
 
 export interface IUser {
-  id: number;
-  email: string;
-  balance: number;
+  id?: number;
+  name: string;
 }
 
 interface IUserserGenerateToken {
   user: IUser;
   token: string;
 }
+
+const defaultUser: IUser = {
+  name: "Admin",
+};
 
 export default async () => {
   const accessToken = useCookie<string | null>("accessToken", {
@@ -20,14 +24,14 @@ export default async () => {
   const user = useState<IUser | null>("user", () => null);
 
   const setUser = (resp: IUserserGenerateToken) => {
-    user.value = resp?.user;
+    user.value = resp?.user ?? defaultUser;
     accessToken.value = resp?.token;
   };
 
   const login = async (data: any, isRedirect = true) => {
     try {
       const resp = await auth.login(data);
-      // if (resp?.error) resp?.popup();
+
       if (resp?.error) {
         return resp?.errorResponse?.data;
       }
@@ -35,7 +39,7 @@ export default async () => {
       setUser(resp);
 
       if (isRedirect) {
-        navigateTo({ name: "index" });
+        navigateTo({ name: "chats" });
       }
     } catch (error) {
       console.error(error);
@@ -62,21 +66,26 @@ export default async () => {
   const getUser = async () => {
     try {
       // await auth
-        // .me(
-        //   //   {
-        //   //     // extends:
-        //   //     //   "contacts,country,image,flat_owners.user,alert,collection_relats.collection",
-        //   //   },
-        //   {},
-        //   { Authorization: `Bearer ${accessToken.value}` }
-        // )
-        // .then((resp) => {
-        //   if (!resp?.error && resp) {
-        //     user.value = resp;
-        //   }
-        // });
+      // .me(
+      //   //   {
+      //   //     // extends:
+      //   //     //   "contacts,country,image,flat_owners.user,alert,collection_relats.collection",
+      //   //   },
+      //   {},
+      //   { Authorization: `Bearer ${accessToken.value}` }
+      // )
+      // .then((resp) => {
+      //   if (!resp?.error && resp) {
+      //     user.value = resp;
+      //   }
+      // });
+      // const
+      await api.chats.getAll?.({ params: { chatIds: [1] } });
+      user.value = defaultUser;
     } catch (error) {
       console.error(error);
+      user.value = null;
+      accessToken.value = null;
     }
   };
 

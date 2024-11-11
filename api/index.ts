@@ -1,8 +1,6 @@
-import todos from "./modules/todos";
 import users from "./modules/users";
 import chats from "./modules/chats";
-
-type apiNames = "todos" | "users" | "chats";
+import messages from "./modules/messages";
 
 interface apiMethods {
   get?: ({ id, params }: { id: number | string; params?: any }) => Promise<any>;
@@ -18,17 +16,14 @@ interface apiMethods {
     params?: any;
   }) => Promise<any>;
   delete?: ({ id, params }: { id: number; params?: any }) => Promise<any>;
-  _?: any;
 }
 
-type typeApi = Record<apiNames, apiMethods>;
-
-// Record<apiMethods, (...args: Array<any>) => Promise<any>>
-// [_: apiMethods]: (...args: Array<any>) => Promise<any> | never;
-const api: typeApi = {
-  todos,
+const api = {
   users,
   chats,
+  messages,
 };
 
-export { api as default, type typeApi, type apiMethods };
+type apiNames = keyof typeof api;
+
+export { api as default, type apiNames, type apiMethods };

@@ -1,12 +1,18 @@
 <template>
   <div class="chat flex rounded-xl py-4 pr-6">
-    <div class="grow">
+    <div class="grow w-full">
       <div class="flex justify-between mb-0.5">
-        <div class="">{{ chat?.creatorBy }}</div>
+        <div class="">{{ getTgNick(chat?.creatorBy) }}</div>
         <div class="chat__id">#{{ chat?.id }}</div>
       </div>
       <div class="chat__time mb-2 opacity-50">
-        {{ moment(convertToMilliseconds(chat?.createdAt)).fromNow() }}
+        {{
+          moment(
+            convertToMilliseconds(
+              chat?.messages?.[0]?.createdAt ?? chat?.createdAt
+            )
+          ).fromNow()
+        }}
       </div>
       <div class="chat__text">{{ chat?.messages?.[0]?.text }}</div>
     </div>
@@ -51,6 +57,10 @@ const props = defineProps<{
   }
 
   &__text {
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+    max-width: 408px;
   }
 }
 </style>

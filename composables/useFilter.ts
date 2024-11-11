@@ -3,7 +3,7 @@ import cloneDeep from "lodash/cloneDeep";
 import debounce from "lodash/debounce";
 import pickBy from "lodash/pickBy";
 
-export type initialFiltersItem = Record<string, any> | undefined;
+export type initialFiltersItem = Record<string, any>;
 
 export interface useFilterArguments {
   initialFilters?: initialFiltersItem;
@@ -14,8 +14,8 @@ export interface useFilterArguments {
 
 export default <T>({
   initialFilters = {},
-  withQueryParams = true,
-  withInitQueryParams = true,
+  withQueryParams = false,
+  withInitQueryParams = false,
   debounceMs = 500,
 }: useFilterArguments = {}) => {
   const id = uniqueId();

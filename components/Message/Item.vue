@@ -9,9 +9,7 @@
     <div class="message__content flex items-end gap-x-3">
       <div class="message__text">{{ message?.text }}</div>
       <div class="message__time">
-        {{
-          moment(convertToMilliseconds(message?.createdAt)).format("DD HH:mm")
-        }}
+        {{ moment(convertToMilliseconds(message?.createdAt)).format("HH:mm") }}
       </div>
     </div>
     <!-- <div class="message__images" v-if="message?.images?.length">

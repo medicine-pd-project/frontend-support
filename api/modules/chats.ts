@@ -1,12 +1,13 @@
 import useFetcher from "../../utils/fetch";
-import type { apiMethods } from "../index";
 
-export default <apiMethods>{
-  get: async ({ id, params }) => useFetcher().get(`/users/${id}`, params),
-  // delete: async ({ id, params }) => useFetcher().delete(`/users/${id}`, params),
-  // update: async ({ id, data, params }) =>
-  //   useFetcher().patch(`/users/${id}`, data, params),
+export interface IChatsMethods {
+  getAll: ({ params }: { params: any }) => Promise<any>;
+  close: ({ chatId, params }: { chatId: number; params?: any }) => Promise<any>;
+}
+
+export default <IChatsMethods>{
   getAll: async ({ params }, headers?: any) =>
     useFetcher().post(`/chat/get`, params, headers),
-  // create: async ({ data }) => useFetcher().post(`/users`, data),
+  close: async ({ chatId, params }) =>
+    useFetcher().post(`/chat/close?chatId=${chatId}`, params),
 };

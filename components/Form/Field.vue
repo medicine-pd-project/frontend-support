@@ -1,6 +1,6 @@
 <template>
   <label class="field form-block">
-    <div v-if="label" class="field__label">{{ label }}</div>
+    <div v-if="label" class="field__label mb-2">{{ label }}</div>
     <template v-else-if="$slots.label">
       <slot name="label"></slot>
     </template>

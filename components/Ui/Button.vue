@@ -1,5 +1,8 @@
 <template>
-  <button class="btn flex text-base gap-2.5 px-6 py-4" :class="[bgColor]">
+  <button
+    class="btn flex justify-center text-base gap-2.5 px-6 py-4"
+    :class="[bgColor, textColor]"
+  >
     <slot />
   </button>
 </template>
@@ -7,7 +10,8 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    bgColor?: "grey" | "blue";
+    bgColor?: "grey" | "white" | "blue";
+    textColor?: "text-red";
   }>(),
   {
     bgColor: "grey",
@@ -20,9 +24,18 @@ const props = withDefaults(
   border-radius: 12px;
   font-weight: 500;
 
+  &.text {
+    &-red {
+      color: var(--color-red);
+    }
+  }
+
+  &.white {
+    background-color: var(--color-white);
+  }
+
   &.grey {
     background: var(--main-background);
-    color: var(--color-red);
   }
 
   &.blue {

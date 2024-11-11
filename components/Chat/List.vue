@@ -15,7 +15,7 @@ import type { IChatView } from "~/interfaces/models/chat";
 
 const props = defineProps<{
   chats?: IChatView[];
-  chatActive: IChatView;
+  chatActive?: IChatView;
 }>();
 
 const emits = defineEmits(["updateChats"]);
