@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+  nuxt-network:
+    driver: bridge
+  default:
+
+
+volumes:
+  public-storage:
+  node_modules: {}
+
+services:
+  chat_frontend:
+    build:
+      dockerfile: ../docker/nuxt/Dockerfile
+      context: './../frontend'
+      args:
+        - BASE_URL=https://http://51.250.76.218:8082
+        - API_URL=https://http://51.250.76.218:8082/api
+        - BACK_URL=https://http://51.250.76.218:8082
+    image: nginx:latest
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+    restart: "unless-stopped"
+    ports:
+      - "24681:24678"
+      - "3000:3000"
+    networks:
+      - nuxt-network
+      - default
