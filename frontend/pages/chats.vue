@@ -524,6 +524,8 @@ const closeChat = async (chat: IChatView) => {
   }
 };
 
+const config = useRuntimeConfig();
+
 const updateMessages = ref();
 
 onMounted(() => {
@@ -536,7 +538,7 @@ onMounted(() => {
     if (activeChatIndex !== undefined && activeChatIndex !== -1) {
       chatActive.value = data.value?.chats[activeChatIndex];
     }
-  }, 5000);
+  }, Number(config.public.INTERVAL_CHAT));
 });
 
 onUnmounted(() => {

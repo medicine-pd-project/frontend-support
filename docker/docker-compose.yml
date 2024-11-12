@@ -19,6 +19,7 @@ services:
         - BASE_URL=http://51.250.76.218:5000
         - API_URL=http://51.250.76.218:8082/api/v1
         - BACK_URL=http://51.250.76.218:8082
+        - INTERVAL_CHAT=2000
     image: nginx:latest
     environment:
       - HOST=0.0.0.0
