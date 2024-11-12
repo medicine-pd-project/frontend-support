@@ -17,7 +17,7 @@ services:
       context: './../frontend'
       args:
         - BASE_URL=http://51.250.76.218:5000
-        - API_URL=http://51.250.76.218:8082/api
+        - API_URL=http://51.250.76.218:8082/api/v1
         - BACK_URL=http://51.250.76.218:8082
     image: nginx:latest
     environment:
