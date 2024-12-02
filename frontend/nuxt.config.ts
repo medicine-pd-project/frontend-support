@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     transpile: ["vue-toastification"],
   },
 
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/device"],
 
   runtimeConfig: {
     public: {
@@ -29,6 +29,12 @@ export default defineNuxtConfig({
       API_URL: `${process.env.API_URL}`,
       BACK_URL: `${process.env.BACK_URL}`,
       INTERVAL_CHAT: process.env.INTERVAL_CHAT,
+    },
+  },
+
+  routeRules: {
+    "/": {
+      redirect: "/chats",
     },
   },
 });

@@ -1,6 +1,9 @@
 <template>
   <div class="chats flex gap-x-6">
-    <div class="chats__left bg-white rounded-xl flex shrink-0 flex-col p-5">
+    <div
+      class="chats__left bg-white rounded-xl flex shrink-0 flex-col p-5"
+      v-if="!$device.isMobile || ($device.isMobile && !chatActive)"
+    >
       <ChatClosed
         :isClosed="filters?.statuses?.includes(ChatTypeEnum.CLOSE)"
         @setStatuses="setStatuses"
@@ -11,8 +14,12 @@
         @updateChats="(val) => (chatActive = val)"
       />
     </div>
-    <div class="bg-white rounded-xl grow p-4">
+    <div
+      class="grow"
+      v-if="!$device.isMobile || ($device.isMobile && chatActive)"
+    >
       <ChatContent
+        @clearChat="chatActive = undefined"
         :chat="chatActive"
         :messages="chatActive?.messages"
         :closeChat="closeChat"
@@ -558,6 +565,12 @@ definePageMeta({
   &__left {
     width: 100%;
     max-width: 496px;
+  }
+
+  @media (max-width: 768px) {
+    &__left {
+      max-width: 100%;
+    }
   }
 }
 </style>

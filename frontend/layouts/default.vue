@@ -1,10 +1,10 @@
 <template>
-  <div class="panel flex flex-col pt-4 px-8 pb-5 min-h-screen">
-    <div class="flex items-center justify-between mb-3">
+  <div class="panel flex flex-col md:pt-4 md:px-8 md:pb-5 min-h-screen">
+    <div class="flex items-center justify-between pt-2 p-4 md:mb-3 md:p-0">
       <IconLogo />
       <div class="bg-white rounded-xl flex items-center gap-x-2 p-2 pl-5">
         <span>Admin</span>
-        <UiButton class="px-3 py-3" @click="open">
+        <UiButton class="px-2 py-2 md:px-3 md:py-3" @click="open">
           <IconExit />
         </UiButton>
       </div>

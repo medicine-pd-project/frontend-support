@@ -3,5 +3,5 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
   const user = useState("user");
 
-  if (user.value) return navigateTo("/chats", { external: true });
+  // if (user.value) return navigateTo("/chats", { external: true });
 });

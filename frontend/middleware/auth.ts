@@ -8,5 +8,5 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
   const user = useState("user");
 
-  if (!user.value) return navigateTo("/login", { external: true });
+  // if (!user.value) return navigateTo("/login", { external: true });
 });

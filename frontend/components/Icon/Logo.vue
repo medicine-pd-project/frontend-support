@@ -1,5 +1,6 @@
 <template>
   <svg
+    class="logo"
     width="236"
     height="42"
     viewBox="0 0 236 42"
@@ -29,3 +30,11 @@
     </defs>
   </svg>
 </template>
+
+<style lang="scss" scoped>
+.logo {
+  @media (max-width: 576px) {
+    width: 156px;
+  }
+}
+</style>
