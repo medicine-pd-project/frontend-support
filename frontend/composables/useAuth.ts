@@ -30,6 +30,7 @@ export default async () => {
 
   const login = async (data: any, isRedirect = true) => {
     try {
+      accessToken.value = null;
       const resp = await auth.login(data);
 
       if (resp?.error) {
